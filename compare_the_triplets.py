@@ -36,6 +36,8 @@ def compareTriplets(a, b):
     Alice = 0
     Bob = 0
 
+    # Use built in function enumerate()
+    # To get the index of a list
     for idxA, numA in enumerate(a):
         for idxB, numB in enumerate(b):
             if idxA == idxB:
