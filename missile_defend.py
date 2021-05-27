@@ -79,27 +79,26 @@
 # Output: 6
 
 def missileDefend(missiles):
-    hackerX = missiles[0:1]
-    newFreq = 0
-    newTime = 0
-    for missile in missiles[1:]:
-        for idx in range(len(missile)):
-            if idx % 2 != 0:
-                freq = missile[1]
-                time = missile[0]
-                
-                for xMissile in hackerX:
-                    for kdx in range(len(xMissile)):
-                        xTime = xMissile[0]
-                        xFreq = xMissile[1]
-                        if kdx %2 != 0:
-                            newFreq = freq - xFreq
-                            if newFreq < 0:
-                                newFreq * -1
-                            newTime = newFreq + xTime
-                            print(newTime) # debugging
-                            if newTime > time:
-                                hackerX.append(missile)
-                                
+    hackerX = list()
+    for idx in range(len(missiles)):
+        if idx == 0:
+            hackerX.append(missiles[idx])
+        # print(hackerX)
+        missile = missiles[idx]  
+        for jdx in range(len(missile)):
+            if jdx % 2 != 0:
+                freq = missiles[idx][1]
+                time = missiles[idx][0]
+                if idx <= len(hackerX)-1:
+                    xFreq = hackerX[idx][1]
+                    xTime = hackerX[idx][0]
+                newFreq = freq - xFreq
+                if newFreq < 0:
+                    newFreq * -1
+                newTime = newFreq + xTime
+                if newTime > time:
+                    hackerX.append(missiles[idx])
+                print(time, freq)
+            
     print(hackerX) # debugging
     return len(hackerX)
