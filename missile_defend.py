@@ -81,40 +81,72 @@
 # 884   892     C
 # Output: 6
 
+rocket = [
+    [5, 687],
+    [49, 338],
+    [63, 853],
+    [93, 150],
+    [129, 535],
+    [130, 831],
+    [140, 841],
+    [142, 591],
+    [144, 581],
+    [271, 594],
+    [271 ,970],
+    [287 ,495],
+    [294 ,191],
+    [333, 150],
+    [488 ,643],
+    [755 ,816],
+    [816 ,341],
+    [848 ,779],
+    [880 ,276],
+    [884 ,892]
+    ]
 def missileDefend(missiles):
     hackerX = list()
     for idx in range(len(missiles)):
-        
-        idxGap = len(missiles) - idx
-        reverseIdx = len(missiles) - idxGap -1
         
         # The first missile always matched with hackerX
         if idx == 0:
             hackerX.append(missiles[idx])
             continue
-        # print(hackerX)
-        missile = missiles[idx]  
-        for jdx in range(len(missile)):
-            if jdx % 2 != 0:
-                curFreq = missile[1]
-                curTime = missile[0]
-                prevMissile = missiles[idx-1]
-                prevFreq = prevMissile[1]
-                prevTime = prevMissile[0]
-                if idx <= len(hackerX):
-                    xMissile = hackerX[len(hackerX)-idx-1] # reverse count
-                    xFreq = xMissile[1]
-                    xTime = xMissile[0]
-                if prevMissile in hackerX:
-                    newFreq = curFreq - xFreq
-                    if newFreq < 0:
-                        newFreq *= -1
-                    
-                    newTime = newFreq + prevTime
-                    if newTime < curTime: 
-                        hackerX.append(xMissile)
-                    elif newTime > curTime and (len(missiles)-idx) < 1:
-                        hackerX.append(missile)
+        print('missile:', missiles[idx])
+        # if idx == 6:
+        #     break
+        missile = missiles[idx]
+        print('Length hackerx', len(hackerX))
+        for jdx in range(len(hackerX)):
+            # hackerX.append(missiles[idx])
+            # print('hackerX', hackerX, len(hackerX))
+            curFreq = missile[1]
+            curTime = missile[0]
+            xMissile = hackerX[0-jdx-1]
+            xFreq = xMissile[1]
+            xTime = xMissile[0]
+            # print('xMissile:', xMissile)
             
-    print(hackerX) # debugging
+            newFreq = curFreq - xFreq
+            if newFreq < 0:
+                newFreq *= -1
+            # print('newFreq', curFreq, '-', xFreq, '=',newFreq)
+            newTime = newFreq + xTime
+            # print('newTime', newFreq, '+', 'xTime', xTime, '=', newTime)
+            # print(idx, newTime,curTime)
+            print(idx, 'missile', missile, 'xMissile', xMissile, jdx, 'newFreq', curFreq, '-', xFreq, '=',newFreq, 'newTime', newFreq, '+', 'xTime', xTime, '=', newTime)
+            if newTime > curTime:
+                if jdx == len(hackerX) - 1:
+                    hackerX.append(missile)
+                continue
+            else:
+                print('before', hackerX)
+                hackerX.remove(xMissile)
+                hackerX.append(missile)
+                print('after',hackerX)
+                break
+                
+    print(hackerX)
+    print('length:', len(hackerX))
     return len(hackerX)
+
+missileDefend(rocket)
