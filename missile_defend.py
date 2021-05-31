@@ -121,7 +121,7 @@ def missileDefend(missiles):
             # print('hackerX', hackerX, len(hackerX))
             curFreq = missile[1]
             curTime = missile[0]
-            xMissile = hackerX[0-jdx-1]
+            xMissile = hackerX[-jdx - 1]
             xFreq = xMissile[1]
             xTime = xMissile[0]
             # print('xMissile:', xMissile)
@@ -135,7 +135,7 @@ def missileDefend(missiles):
             # print(idx, newTime,curTime)
             print(idx, 'missile', missile, 'xMissile', xMissile, jdx, 'newFreq', curFreq, '-', xFreq, '=',newFreq, 'newTime', newFreq, '+', 'xTime', xTime, '=', newTime)
             if newTime > curTime:
-                if jdx == len(hackerX) - 1:
+                if (len(hackerX) - jdx - 1) == 0:
                     hackerX.append(missile)
                 continue
             else:
