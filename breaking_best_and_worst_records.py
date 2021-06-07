@@ -2,18 +2,17 @@ def breakingRecords(scores):
     # Write your code here
     maxCount = 0
     minCount = 0
-    newScore = dict()
     result = list()
     for idx, score in enumerate(scores):
         if idx == 0:
-            newScore['Highest'] = score
-            newScore['Lowest'] = score
-        if score > newScore['Highest']:
+            highest = score
+            lowest = score
+        if score > highest:
             maxCount += 1
-            newScore['Highest'] = score
-        elif score < newScore['Lowest']:
+            highest = score
+        elif score < lowest:
             minCount += 1
-            newScore['Lowest'] = score
+            lowest = score
     result.append(maxCount)
     result.append(minCount)
     
