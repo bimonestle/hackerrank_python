@@ -1,27 +1,30 @@
 def birthday(s: list, d: int, m: int) -> int:
     count = 0
-    calc = 0
-    month = m
+    calc = s[0]
+    month = m - 1
 
-    for i in range(0, len(s)):
+    if len(s) == 1:
+        if s[0] == d:
+            count += 1
+
+    for i in range(1, len(s)):
         print('idx', i)
         for j in range(i, len(s)):
-            print('jdx', j, s[j])
-            if len(s) == 1:
-                if s[j] == d:
-                    count += 1
-                    break
-            month -= 1
-            print('month:', month)
-            if month < 0:
-                month = m
-                break
+            print('jdx', j)
             calc += s[j]
             print('calc', calc)
+            month -= 1
+            if month < 0:
+                month = m - 1
+                break
             if calc == d:
-                calc = 0
+                calc = s[i]
                 count += 1
-                month = m
+                month = m -1
+                break
+            elif calc > d:
+                calc = s[i]
+                month = m - 1
                 break
     print(count)
     return count
@@ -29,10 +32,10 @@ def birthday(s: list, d: int, m: int) -> int:
 # arr = [1, 2, 1, 3, 2]
 # date = 3
 # month = 2
-# arr = [2, 5, 1, 3, 4, 4, 3, 5, 1, 1, 2, 1, 4, 1, 3, 3, 4, 2, 1]
-# date = 18
-# month = 7
-arr = [1, 1, 1, 1, 1, 1]
-date = 3
-month = 2
+arr = [2, 5, 1, 3, 4, 4, 3, 5, 1, 1, 2, 1, 4, 1, 3, 3, 4, 2, 1]
+date = 18
+month = 7
+# arr = [1, 1, 1, 1, 1, 1]
+# date = 3
+# month = 2
 birthday(arr,date,month)
