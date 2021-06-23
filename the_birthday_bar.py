@@ -1,47 +1,14 @@
 def birthday(s: list, d: int, m: int) -> int:
-    print("Length:", len(s))
     count = 0
-    # calc = s[0]
-    month = m - 1
 
-    if len(s) == 1:
-        if s[0] == d:
+    if m == 1:
+        count = 1
+    
+    for i in range((len(s) - 1)):
+        if sum(s[i:i+m]) == d:
             count += 1
-
-    for i in range(0, len(s)):
-        print('idx', i)
-        if i > len(s) - m - 1:
-            break
-        calc = s[i]
-        for j in range(i+1, len(s)):
-            print('jdx', j)
-            calc += s[j]
-            print('month before:', month)
-            print('calc', calc)
-            month -= 1
-            print('month after:', month)
-            if month < 0:
-                month = m - 1
-                break
-
-            if calc == d:
-                # calc = s[i]
-                count += 1
-                # month = m -1
-                break
-            elif calc > d:
-                # calc = s[i]
-                # month = m - 1
-                break
-        # calc = s[i]
-        month = m - 1
-    print("Count before:", count)
-    if count > m:
-        remainder = len(s) % m
-        # if remainder == 0:
-        #     count -= count
-        count = count - remainder
-    print("Count after:", count)
+    
+    print(count)
     return count
 
 # arr = [1, 2, 1, 3, 2]
