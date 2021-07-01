@@ -1,6 +1,10 @@
 def migratoryBirds(arr):
     seen = dict()
     count = 1
+
+    # Sort the array descendingly and add counter if it matches the condition.
+    # The condition is if the index value the same as the next index, add counter
+    # Then assign the value to the dictionary key.
     arr.sort(reverse=True)
     print('arr:', arr)
     for i in range(len(arr)):
@@ -14,16 +18,21 @@ def migratoryBirds(arr):
             break
     
     print(seen)
+
+    # Sort the assigned object based on the value. Sort it descendingly.
     sortSeen = sorted(seen.items(), key=lambda x:x[1], reverse=True)
     print(sortSeen)
     result = 0
     tempVal = 0
+
+    # tuples[0] = key
+    # tuples[1] = value
+    # if the value is greater or equal than temporary value,
+    # assign temporary value with the value and
+    # assign the result with the key
+    # else, break the loop.
     for i in sortSeen:
-        if i[1] > tempVal:
-            print('key:', i[0])
-            tempVal = i[1]
-            result = i[0]
-        elif i[1] == tempVal:
+        if i[1] >= tempVal:
             print('key:', i[0])
             tempVal = i[1]
             result = i[0]
