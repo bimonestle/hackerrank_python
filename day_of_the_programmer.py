@@ -1,13 +1,17 @@
-def isLeapYear(year):
+def leapYear(year):
     if year >= 1700 and year <= 1917:
         if year % 4 == 0:
-            return True
+            return 244
     if year > 1917:
         if year % 400 == 0 or (year % 4 == 0 and year % 100 != 0):
-            return True
-    return False
+            return 244
+        elif year == 1918:
+            return 243 - 13
+    return 243
 
 def dayOfProgrammer(year):
-    if isLeapYear(year):
-        return '12.09.' + str(year)
-    return '13.09.' + str(year)
+    date = 256 - leapYear(year)
+    print("%d.09.%d" % (date, year))
+    return str(date) + '.09.' + str(year)
+
+dayOfProgrammer(2017)
