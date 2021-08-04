@@ -9,9 +9,18 @@ def formingMagicSquare(s: list) -> int:
             one_Dim_Arr.append(lstB)
 
     print(one_Dim_Arr)
-    # for idx, el in enumerate(one_Dim_Arr):
-    #     if one_Dim_Arr[idx] == el:
-    #         print(True)
+
+    for idx in range(len(one_Dim_Arr)):
+        if idx == 4:
+            if one_Dim_Arr[idx] == 5:
+                continue
+            else:
+                one_Dim_Arr[idx] = 5
+                continue
+
+        
+
+
 
 s = [[5, 3, 4], [1, 5, 8], [6, 4, 2]]
 
